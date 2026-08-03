@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="njWIwMM-iKtT7TC64ewpxMVCw06kPm5JKdLPnROyGg8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黒目川を散歩しながら黒目川土手のゴミを拾う会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-black:#121110;
+    --deep:#1C2B24;
+    --deep2:#28392F;
+    --gold:#C9A227;
+    --gold-bright:#E7C64A;
+    --seal:#9C2B28;
+    --paper:#F6F1E4;
+    --paper2:#EDE5D0;
+    --ink:#1E1B15;
+    --muted:#8f886f;
+    --line:rgba(201,162,39,0.25);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink-black);
+    color:var(--paper);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.95;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,.serif{font-family:'Shippori Mincho B1', serif;}
+  a{color:inherit;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 24px;}
+  img,svg{display:block;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none;} }
+
+  /* ---------------- hanko seal (signature element) ---------------- */
+  .seal{
+    width:74px; height:74px;
+    border:2.5px solid var(--seal);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--seal);
+    font-family:'Shippori Mincho B1', serif;
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:0.05em;
+    writing-mode:vertical-rl;
+    flex-shrink:0;
+    transform:rotate(-4deg);
+    opacity:0.92;
+  }
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(201,162,39,0.14), transparent 55%),
+      linear-gradient(160deg, var(--ink-black) 0%, var(--deep) 78%);
+    padding:140px 0 90px;
+    overflow:hidden;
+  }
+  .hero .cross-strokes{
+    position:absolute; top:0; right:-6%; height:100%; width:56%;
+    opacity:0.5;
+  }
+  .eyebrow{
+    font-family:'Shippori Mincho B1', serif;
+    font-size:clamp(20px, 3.4vw, 34px);
+    letter-spacing:0.08em;
+    line-height:1.6;
+    color:var(--gold-bright);
+    margin-bottom:30px;
+    font-weight:700;
+  }
+  .hero h1{
+    font-size:clamp(30px, 5.4vw, 56px);
+    line-height:1.55;
+    font-weight:800;
+    margin:0 0 30px;
+    color:#fdfaf1;
+    max-width:680px;
+  }
+  .hero h1 .gold{color:var(--gold-bright);}
+  .hero p.lede{
+    max-width:540px;
+    font-size:16.5px;
+    color:rgba(246,241,228,0.78);
+    margin:0 0 44px;
+  }
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:16px 32px;
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--gold); color:var(--ink-black);}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--gold-bright);}
+  .btn-ghost{border-color:rgba(246,241,228,0.35); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold-bright);}
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:24px;
+    font-size:11px; letter-spacing:0.28em; color:var(--muted);
+    writing-mode:vertical-rl;
+  }
+
+  /* ---------------- section framing ---------------- */
+  .section{padding:130px 0;}
+  .on-paper{background:var(--paper); color:var(--ink);}
+  .on-deep{background:var(--deep2); color:var(--paper);}
+  .on-black{background:var(--ink-black); color:var(--paper);}
+
+  .label{
+    font-size:12px;
+    letter-spacing:0.3em;
+    font-weight:700;
+    margin-bottom:20px;
+    color:var(--gold);
+  }
+  .on-paper .label{color:#9c7d1e;}
+  h2{
+    font-size:clamp(24px, 3.2vw, 34px);
+    font-weight:800;
+    margin:0 0 30px;
+    line-height:1.65;
+  }
+  .lead{font-size:16px; max-width:640px;}
+  .on-paper .lead{color:#40392c;}
+  .on-deep .lead, .on-black .lead{color:rgba(246,241,228,0.78);}
+
+  /* ---------------- nito-ryu (two-way) split ---------------- */
+  .nito-grid{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:0;
+    align-items:stretch;
+    margin-top:56px;
+    border:1px solid var(--line);
+  }
+  .nito-col{padding:40px 34px;}
+  .nito-col .kanji{
+    font-family:'Shippori Mincho B1', serif;
+    font-size:15px;
+    color:var(--gold);
+    letter-spacing:0.1em;
+    margin-bottom:16px;
+    font-weight:700;
+  }
+  .nito-col p{font-size:14.5px; color:rgba(246,241,228,0.8); margin:0;}
+  .nito-div{
+    width:1px;
+    background:linear-gradient(180deg, transparent, var(--gold), transparent);
+  }
+  @media (max-width:720px){
+    .nito-grid{grid-template-columns:1fr;}
+    .nito-div{width:100%; height:1px;}
+  }
+
+  .musashi-note{
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--muted);
+    max-width:640px;
+  }
+
+  /* ---------------- quote ---------------- */
+  .quote-block{padding:120px 0;}
+  .quote-block .wrap{max-width:740px; display:flex; gap:36px; align-items:flex-start;}
+  .quote-mark{font-family:'Shippori Mincho B1', serif; font-size:56px; color:var(--gold); line-height:1;}
+  .qtext{
+    font-family:'Shippori Mincho B1', serif;
+    font-size:clamp(19px,2.4vw,25px);
+    line-height:2;
+    color:#fdfaf1;
+    margin:0 0 22px;
+  }
+  .attr{font-size:13px; color:var(--muted); letter-spacing:0.04em;}
+  @media (max-width:640px){ .quote-block .wrap{flex-direction:column; gap:18px;} }
+
+  /* ---------------- unthanked virtue ---------------- */
+  .virtue-wrap{display:flex; gap:40px; align-items:flex-start; margin-top:16px;}
+  .virtue-text{flex:1;}
+  .virtue-text p{font-size:15.5px; margin:0 0 20px; color:rgba(246,241,228,0.82);}
+  .virtue-text p:last-child{margin-bottom:0;}
+  .virtue-text .em{color:var(--gold-bright); font-weight:700;}
+  @media (max-width:720px){ .virtue-wrap{flex-direction:column;} }
+
+  /* ---------------- ocean flow ---------------- */
+  .flow-vert{
+    display:flex; flex-direction:column; gap:0;
+    margin:50px 0 44px;
+    max-width:340px;
+  }
+  .flow-node{
+    font-size:14px; font-weight:700; color:var(--ink);
+    background:#fff; border:1px solid var(--line);
+    padding:14px 20px;
+  }
+  .flow-arrow{
+    text-align:left; padding:6px 20px; color:#9c7d1e; font-size:16px;
+  }
+  .fact-list{list-style:none; padding:0; margin:36px 0 0; display:grid; gap:0; max-width:680px;}
+  .fact-list li{
+    display:flex; gap:18px; font-size:15px; padding:22px 0;
+    border-bottom:1px solid var(--bank-line, #DCCFA9);
+  }
+  .on-paper .fact-list li{border-bottom-color:#DCCFA9; color:#3b352b;}
+  .fact-list .mark{color:var(--gold); font-weight:800; font-family:'Shippori Mincho B1', serif; font-size:18px; flex-shrink:0;}
+
+  /* ---------------- river facts ---------------- */
+  .river-facts{display:grid; grid-template-columns:1fr 1fr; gap:38px; margin-top:44px; max-width:720px;}
+  .fact-item .k{font-size:12px; letter-spacing:0.16em; color:#9c7d1e; font-weight:700; margin-bottom:8px;}
+  .fact-item .v{font-size:15px; color:#2f2a20;}
+  @media (max-width:640px){ .river-facts{grid-template-columns:1fr;} }
+
+  /* ---------------- offkai ---------------- */
+  .offkai{
+    background:linear-gradient(180deg, var(--ink-black), #0d1512 60%);
+    padding:130px 0 140px;
+  }
+  .safety-note{
+    display:flex; gap:18px; align-items:flex-start;
+    margin:36px 0 40px;
+    padding:22px 24px;
+    border:1px solid var(--line);
+    background:rgba(201,162,39,0.05);
+    max-width:640px;
+  }
+  .safety-note .mk{color:var(--seal); font-weight:800; font-family:'Shippori Mincho B1', serif; font-size:18px;}
+  .safety-note p{margin:0; font-size:14px; color:rgba(246,241,228,0.78);}
+
+  .form-card{
+    background:var(--paper);
+    color:var(--ink);
+    max-width:520px;
+    margin-top:44px;
+    padding:46px;
+  }
+  .form-row{margin-bottom:24px;}
+  .form-row label{display:block; font-size:13px; font-weight:700; letter-spacing:0.04em; color:var(--ink-black); margin-bottom:8px;}
+  .form-row input{
+    width:100%; padding:13px 14px; border:1px solid #DCCFA9; background:#fff;
+    font-family:inherit; font-size:15px; color:var(--ink);
+  }
+  .form-row input:focus{outline:2px solid var(--gold); outline-offset:1px;}
+  .form-note{font-size:12.5px; color:#6b6455; margin-top:-8px; margin-bottom:26px;}
+  .submit-btn{
+    width:100%; padding:16px; background:var(--ink-black); color:#fff; border:none;
+    font-weight:700; font-size:15px; letter-spacing:0.05em; cursor:pointer;
+    transition:background .15s ease;
+  }
+  .submit-btn:hover{background:var(--deep);}
+  .form-msg{margin-top:18px; font-size:13.5px; display:none;}
+  .form-msg.show{display:block;}
+  .form-msg.ok{color:#4c6f5c; font-weight:700;}
+
+  footer{
+    padding:50px 0;
+    text-align:center;
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    background:var(--ink-black);
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <svg class="cross-strokes" viewBox="0 0 500 900" aria-hidden="true">
+    <line x1="60" y1="0" x2="420" y2="900" stroke="#C9A227" stroke-width="2" opacity="0.35"/>
+    <line x1="420" y1="0" x2="60" y2="900" stroke="#C9A227" stroke-width="2" opacity="0.2"/>
+    <circle cx="240" cy="450" r="140" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.25"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">黒目川を散歩しながら黒目川土手のゴミを拾う会</div>
+    <h1>歩くのは健康のため、<br>拾うのは<span class="gold">徳</span>のため。<br>二刀流の散歩。</h1>
+    <p class="lede">散歩で体を整え、ゴミ拾いで徳を積む。ふたつを同時に、無理なく続ける。それが黒目川の土手を歩く。</p>
+    <p class="lede" style="font-size:19px; font-weight:700; color:var(--gold-bright); opacity:1; margin-top:8px;">年会費・入会金はありません。</p>
+  </div>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<section class="section on-black reveal" id="nitoryu">
+  <div class="wrap">
+    <div class="label">二刀流という考え方</div>
+    <h2>健康と徳、ふたつを同時に鍛える。</h2>
+    <p class="lead">片手には自分の健康、もう片手には人知れず積む徳。どちらか一方ではなく、両方を同時に手にする歩き方を、この会では「二刀流」と呼んでいます。</p>
+
+    <div class="nito-grid">
+      <div class="nito-col">
+        <div class="kanji">健康 &mdash; 歩く</div>
+        <p>黒目川の土手を、自分の足で、自分のペースで歩く。距離も時間も決めません。続けるうちに、体はおのずと整っていきます。</p>
+      </div>
+      <div class="nito-div"></div>
+      <div class="nito-col">
+        <div class="kanji">徳 &mdash; 拾う</div>
+        <p>目についたゴミを、拾えるだけ拾う。誰かに見られるためではなく、川と、その先の海のために。積んだ徳は、静かに自分に返ってきます。</p>
+      </div>
+    </div>
+
+    <p class="musashi-note">「二刀流」という言葉は、もともと剣豪・宮本武蔵が二本の刀を同時に操った剣術に由来し、後に大谷翔平選手が投打を両立させる姿を表す言葉として広く使われるようになりました。この会にとっての二刀流は、大谷選手の在り方に重ねた「歩くこと」と「拾うこと」の両立です。</p>
+  </div>
+</section>
+
+<div class="quote-block on-deep reveal">
+  <div class="wrap">
+    <span class="quote-mark">&ldquo;</span>
+    <div>
+      <p class="qtext">大谷翔平選手の母校・花巻東高校硬式野球部の佐々木洋監督は、日頃から部員たちに「ゴミは人が落とした運。ゴミを拾うということは、運を拾うということだ」と指導していたと伝えられています。</p>
+      <div class="attr">恩師から受け継がれた教え。</div>
+    </div>
+  </div>
+</div>
+
+<section class="section on-black reveal">
+  <div class="wrap">
+    <div class="label">誰にも、感謝されなくていい</div>
+    <h2>それでも拾える人が、この会に合う人です。</h2>
+    <div class="virtue-wrap">
+      <div class="seal">徳積</div>
+      <div class="virtue-text">
+        <p>土手のゴミを拾っても、誰かにお礼を言われることはほとんどありません。むしろ、拾っていることに誰も気づかないまま、その日は終わります。</p>
+        <p>それでいいのだと思います。<span class="em">見られていなくても続けられること</span>こそが、この会が大切にしている資質です。</p>
+        <p>感謝されなくても淡々と拾い続けられる人は、運を拾える人です。散歩とゴミ拾いは、どなたでも自由に始められます。</p>
+        <p>私自身、これまで10年間、朝霞市の子の神氷川神社の清掃活動を行ってまいりました。今後はそちらの活動を停止し、この「黒目川を散歩しながら黒目川土手のゴミを拾う会」に専念いたします。子の神氷川神社の清掃活動については <a href="https://sites.google.com/view/shrinecleanup/" target="_blank" rel="noopener" style="color:var(--gold-bright); text-decoration:underline;">こちら</a> をご覧ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section on-paper reveal">
+  <div class="wrap">
+    <div class="label">なぜ拾うのか</div>
+    <h2>土手のゴミは、いつか海へたどり着く。</h2>
+    <p class="lead">黒目川は新座市・朝霞市を流れ、新河岸川に合流します。土手に置き去りにされた空き缶やペットボトルは、雨や風で川に落ち、そのまま下流へ、そして海へと運ばれていきます。</p>
+
+    <div class="flow-vert">
+      <div class="flow-node">黒目川の土手</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">黒目川</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">新河岸川</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-node">海</div>
+    </div>
+
+    <ul class="fact-list">
+      <li><span class="mark">一</span><span>海に流れ着いたペットボトルなどのプラスチックごみは、紫外線や波の力で少しずつ砕け、目に見えないほど小さな「マイクロプラスチック」になります。</span></li>
+      <li><span class="mark">二</span><span>マイクロプラスチックは海を漂ううちに魚の体内に取り込まれます。とくにペットボトルのような身近な素材ほど量が多く、分解にも時間がかかります。</span></li>
+      <li><span class="mark">三</span><span>そうした魚を私たち人間が食べることで、巡り巡って自分たちの体に戻ってくる可能性が指摘されています。土手で拾う一本が、自分の食卓を守ることにもつながっています。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section on-paper reveal">
+  <div class="wrap">
+    <div class="label">この川について</div>
+    <h2>黒目川という、身近な川。</h2>
+    <p class="lead">遊歩道が整備され、散歩やウォーキングに向いた川です。普段何気なく歩いている道が、実は海までつながっているということを、少しだけ意識してみてください。</p>
+
+    <div class="river-facts">
+      <div class="fact-item"><div class="k">水源</div><div class="v">小平霊園内の「さいかち窪」</div></div>
+      <div class="fact-item"><div class="k">流域</div><div class="v">東久留米市 → 新座市 → 朝霞市、新河岸川へ合流</div></div>
+      <div class="fact-item"><div class="k">土手の様子</div><div class="v">遊歩道が整備され、散歩・ウォーキング・サイクリングに利用されている</div></div>
+      <div class="fact-item"><div class="k">生き物</div><div class="v">アユ・コイ・フナなどの魚、カワセミ・サギなどの野鳥が生息</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="offkai reveal" id="offkai">
+  <div class="wrap">
+    <div class="label">オフ会について</div>
+    <h2>感謝されなくても淡々と拾い続けられる人は、運を拾える人です。</h2>
+    <p class="lead">こういう人たちで、集まりませんか。散歩とゴミ拾いを通じて「二刀流」を体現している方たちで、少人数のオフ会を開きたいと思っています。</p>
+
+    <div class="river-facts" style="margin-top:36px;">
+      <div class="fact-item"><div class="k" style="color:var(--gold);">参加条件</div><div class="v" style="color:rgba(246,241,228,0.82);">黒目川を散歩して黒目川のゴミ拾いをしている人です。</div></div>
+      <div class="fact-item"><div class="k" style="color:var(--gold);">会場</div><div class="v" style="color:rgba(246,241,228,0.82);">むさしの森珈琲 朝霞本町店</div></div>
+      <div class="fact-item"><div class="k" style="color:var(--gold);">時期</div><div class="v" style="color:rgba(246,241,228,0.82);">登録人数が集まり次第、週末の朝に開催</div></div>
+      <div class="fact-item"><div class="k" style="color:var(--gold);">費用</div><div class="v" style="color:rgba(246,241,228,0.82);">お茶代は各自ご負担ください</div></div>
+    </div>
+
+    <div class="safety-note">
+      <span class="mk">注</span>
+      <p>オフ会は連絡網に登録いただいた方限定で開催します。オフ会に参加したい人は登録してください。セールス、勧誘等は一切ありません。</p>
+    </div>
+
+    <div class="form-card" style="padding:0; background:transparent; max-width:640px;">
+      <div style="background:var(--paper); padding:16px; overflow-x:auto;">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeLdwZ26wSd_N8J1ZkeqIyH0Ol8jb-1xz2Xxs18rVlRovXPCw/viewform?embedded=true" width="640" height="758" frameborder="0" marginheight="0" marginwidth="0" style="max-width:100%; border:none; display:block; margin:0 auto;">読み込んでいます…</iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  黒目川を散歩しながら黒目川土手のゴミを拾う会
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
